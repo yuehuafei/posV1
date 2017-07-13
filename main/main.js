@@ -11,13 +11,9 @@ function tagsSplit(tags) {
     var strs=tags[i].split("-");
     var obj=new Object();
     obj.barcode=strs[0];
- //   for(var j=0;j<allItems.length;j++)
- //   {
- //    if(strs[0]==allItems[j].barcode)
- //     {
+
         if(strs[1]==null)
         {
-         // allItems[j].count=1;
           obj.count=1;
         }
         else
@@ -43,7 +39,7 @@ function merge(output) {
   }
   return output;
 }
-//补全信息
+//3.补全信息
 function fillInfo(output,allItems) {
 
   for(var i=0;i<output.length;i++)
@@ -81,7 +77,7 @@ function sub(output,promotions) {
   }
   return subTotal;
 }
-//3.计算总计
+//5.计算总计
 function sum(subTotal) {
   var totalMoney=0;
   for(var i=0;i<subTotal.length;i++)
@@ -90,7 +86,7 @@ function sum(subTotal) {
   }
   return totalMoney;
 }
-//计算优惠
+//6.计算优惠
 function promotion(totalMoney,output) {
   var sum=0;
   for(var i=0;i<output.length;i++)
@@ -102,7 +98,7 @@ function promotion(totalMoney,output) {
 
 }
 
-//5.字符串拼接
+//7.字符串拼接
 function strConnect(output,subTotal,totalMoney,privilege){
   var strs="***<没钱赚商店>收据***\n";
   for(var i=0;i<output.length;i++){
@@ -112,7 +108,7 @@ function strConnect(output,subTotal,totalMoney,privilege){
   strs+="----------------------\n"+"总计："+totalMoney.toFixed(2)+"(元)\n"+"节省："+privilege.toFixed(2)+"(元)\n**********************";
   return strs;
 }
-//6.打印
+//8.打印
 function printReceipt(tags){
   var output=fillInfo(merge(tagsSplit(tags)),allItems);
   var subTotal=sub(output,promotions);
